@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const UserTable = ({ refresh }) => {
+const UserTable = ({ refresh, onEdit }) => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const deleteUser = async (id) => {
     try {
-      // Use full URL explicitly to test
       const response = await axios.delete(`http://localhost:3000/api/users/${id}`);
       console.log('Delete response:', response);
       setUsers(users.filter(user => user._id !== id));
@@ -61,6 +60,7 @@ const UserTable = ({ refresh }) => {
                 <button onClick={() => deleteUser(user._id)}>
                   Delete
                 </button>
+                <button onClick={() => onEdit(user)}>Edit</button>
               </td>
             </tr>
           ))
