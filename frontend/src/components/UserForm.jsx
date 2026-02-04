@@ -1,17 +1,16 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import api from "../services/api";
 
-const UserForm = () => {
+const UserForm = ({ onSuccess }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
   const submitHandler = async () => {
     try {
       await api.post("/users", { name, email });
-      alert("User saved");
       setName("");
       setEmail("");
+      onSuccess && onSuccess(); 
     } catch (err) {
       console.error(err);
       alert("Error saving user");

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import UserForm from "./components/UserForm";
-import UserTable from "./components/UserTable";
+import UserForm from "./UserForm";
+import UserTable from "./UserTable";
 
 const UsersPage = () => {
   const [refresh, setRefresh] = useState(false);
